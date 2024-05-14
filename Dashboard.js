@@ -4,6 +4,9 @@ import { LinearGradient } from 'expo-linear-gradient';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
+import { View, Text, StyleSheet} from 'react-native'
+import React from 'react'
+import { Feather, Fontisto, MaterialCommunityIcons } from 'react-native-vector-icons';
 
 export default function Dashboard({ route }) {
   const [users, setUsers] = useState([]);
@@ -58,6 +61,32 @@ export default function Dashboard({ route }) {
       console.log('Error logging out:', error);
     }
   };
+
+  const styles = StyleSheet.create({
+    container: {
+      backgroundColor: '#0e806a',
+      paddingTop: 80,
+      paddingBottom: 8,
+    },
+    headerContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      marginHorizontal: 16
+    },
+    headerText: {
+      fontSize: 20,
+      color: 'white',
+      fontWeight: '500'
+    },
+    iconContainer: {
+      flexDirection: 'row',
+      alignItems: 'center'
+    },
+    icon: {
+      marginLeft: 20
+    }
+  });
 
   return (
     <View style={{ flex: 1, backgroundColor: '#000', position: 'relative' }}>
@@ -121,4 +150,5 @@ export default function Dashboard({ route }) {
       </View>
     </View>
   );
+
 }
