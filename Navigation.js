@@ -31,6 +31,11 @@ const AppNavigator = () => {
         options={{ headerShown: false }}
       />
       <Stack.Screen
+        name="Detail"
+        component={Detail}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
         name="Dashboard"
         component={Dashboard}
         options={{ headerShown: false }}

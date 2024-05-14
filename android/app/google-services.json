@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "998838161879",
+    "project_id": "whatsappa-80813",
+    "storage_bucket": "whatsappa-80813.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:998838161879:android:315ee872cb25e1d26cbb92",
+        "android_client_info": {
+          "package_name": "com.paramk.whatsapp_new"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3MR_DtC2BphuDKGzIDWMxSXcrK26GYKU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
