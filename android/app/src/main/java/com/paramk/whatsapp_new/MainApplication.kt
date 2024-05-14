@@ -1,4 +1,5 @@
 package com.paramk.whatsapp_new
+import io.invertase.firebase.app.ReactNativeFirebaseAppModule
 
 import android.app.Application
 import android.content.res.Configuration
@@ -26,7 +27,7 @@ class MainApplication : Application(), ReactApplication {
                 // Include the existing packages
                 packages.addAll(PackageList(this).packages)
                 // Add the following line to include ReactNativeFirebaseAppPackage
-                packages.add(ReactNativeFirebaseAppPackage())
+                packages.add(io.invertase.firebase.app.ReactNativeFirebaseAppModule())
                 return packages
           }
 
