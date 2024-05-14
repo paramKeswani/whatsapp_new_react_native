@@ -1,4 +1,6 @@
 package com.paramk.whatsapp_new
+import com.paramk.whatsapp_new.BuildConfig
+import com.paramk.whatsapp_new.R
 
 import android.os.Build
 import android.os.Bundle

@@ -83,14 +83,18 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "com.whatsappnew"
+    namespace 'com.paramk.whatsapp_new'
     defaultConfig {
         applicationId 'com.paramk.whatsapp_new'
-        minSdkVersion rootProject.ext.minSdkVersion
+        minSdkVersion 24
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0.0"
+       
     }
+      buildFeatures {
+    buildConfig = true
+  }
     signingConfigs {
         debug {
             storeFile file('debug.keystore')
