@@ -12,6 +12,7 @@ const ChatScreen = () => {
     const { params } = useRoute();
     const { userId, userName } = params;
     const currentUser = auth().currentUser;
+    const navigation = useNavigation(); // Get navigation object
 
     useEffect(() => {
         const chatId = [currentUser.uid, userId].sort().join('_');
@@ -70,6 +71,13 @@ const ChatScreen = () => {
         />
     );
 
+    useEffect(() => {
+        // Set navigation options in a separate useEffect hook
+        navigation.setOptions({
+            title: userName, // Set header title to userName
+        });
+    }, [navigation, userName]); // Dependency array with navigation and userName
+
     return (
         <LinearGradient colors={['#000', '#FFF']} style={{ flex: 1 }}>
             <GiftedChat
@@ -77,9 +85,10 @@ const ChatScreen = () => {
                 onSend={newMessages => onSend(newMessages)}
                 user={{
                     _id: currentUser.uid,
-                    name: currentUser.displayName || 'User',
+                    name: userName,
                 }}
                 renderBubble={renderBubble}
+                placeholder={`Chatting with ${userName}`}
             />
             {Platform.OS === 'android' && <KeyboardAvoidingView behavior="padding" />}
         </LinearGradient>

@@ -5,6 +5,7 @@ import Login from "./Login";
 import Detail from "./Detail";
 import Dashboard from "./Dashboard";
 import ChatScreen from "./Chat";
+import Status from "./status";
 
 const Stack = createStackNavigator();
 const AppNavigator = () => {
@@ -33,6 +34,11 @@ const AppNavigator = () => {
       <Stack.Screen
         name="Detail"
         component={Detail}
+        options={{ headerShown: false }}
+      />
+            <Stack.Screen
+        name="Status"
+        component={Status}
         options={{ headerShown: false }}
       />
       <Stack.Screen

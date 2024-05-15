@@ -49,7 +49,7 @@ const Login = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Firebase Login Screen</Text>
+      <Text style={styles.title}>Login Screen</Text>
       <TextInput
         placeholder="Email"
         value={email}
