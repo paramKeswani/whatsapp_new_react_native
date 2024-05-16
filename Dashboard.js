@@ -87,16 +87,17 @@ export default function Dashboard({ route }) {
           renderItem={({ item }) => (
             <TouchableOpacity onPress={() => navigateToChat(item.id, item.name, item.email)} style={[styles.userContainer,{height:90}]}>
               <LinearGradient colors={['rgba(128,128,128,0)', 'rgba(128,128,128,0)']} style={styles.userGradient}>
-                <View style={styles.circle} />
-                <View style={{paddingBottom:10}}>
-                <Text style={styles.userName}>{item.name}</Text>
-                <Text> Hello Programmer How are You ?</Text>
+                <View style={[styles.circle,{paddingBottom:10}]} />
+                <View style={{marginBottom:10}}>
+                <Text style={[styles.userName,{paddingTop:5}]}>{item.name}</Text>
+                <Text style={{ marginBottom: 15, fontSize: 15 }}>Hello Programmer How are You ?</Text>
+
 
                 </View>
                 
                 <View style={{paddingBottom:10}}>
                  <Text style={{marginRight:10}}>12.15</Text>
-                 <View style={styles.smallcircle}>
+                 <View style={[styles.smallcircle,{color:"green"}]}>
 
                  <Text style={[{ color:"white"}]} >2</Text>
                  </View>
@@ -124,7 +125,7 @@ const styles = StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#0e806a',
+    backgroundColor: '#075e54',
     paddingVertical: 10,
     
   },
@@ -138,7 +139,7 @@ const styles = StyleSheet.create({
   },
   listContainer: {
     flex: 1,
-    backgroundColor: '#DCDCDC',
+    backgroundColor: '#fff',
     paddingTop: 5,
   },
   userContainer: {
@@ -170,7 +171,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 30,
     right: 20,
-    backgroundColor: '#0e806a',
+    backgroundColor: '#075e54',
     width: 60,
     height: 60,
     borderRadius: 30,
@@ -178,16 +179,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   circle: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
     backgroundColor: 'grey',
   },
   smallcircle: {
     width: 25,
     height: 25,
     borderRadius: 25,
-    backgroundColor: 'lightgreen',
+    backgroundColor: '#25d366',
     justifyContent: 'center', // Align text vertically
     alignItems: 'center'
 

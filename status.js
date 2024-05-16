@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     margin: 10,
-    color: '#43A047'
+    color: '#075e54'
 
   },
   headerContent: {
@@ -200,10 +200,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     margin: 10,
-    color: '#43A047'
+    color: '#075e54'
   },  logoutText: {
     fontSize: 10,
-    color: '#43A047',
+    color: '#075e54',
     margin: 10,
     fontWeight: 'bold',
   },
@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#0e806a',
+    backgroundColor: '#075e54',
     paddingVertical: 10,
     
   },
@@ -261,7 +261,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 30,
     right: 20,
-    backgroundColor: '#0e806a',
+    backgroundColor: '#075e54',
     width: 60,
     height: 60,
     borderRadius: 30,

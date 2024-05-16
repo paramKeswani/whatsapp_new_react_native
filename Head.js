@@ -22,7 +22,7 @@ export default Head
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#0e806a',
+    backgroundColor: '#075e54',
     paddingTop: 80,
     paddingBottom: 8,
   },

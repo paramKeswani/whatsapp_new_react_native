@@ -1,11 +1,15 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Platform, KeyboardAvoidingView, View, Text } from 'react-native';
+import { Platform, KeyboardAvoidingView, View, Text ,TouchableOpacity} from 'react-native';
 import { GiftedChat, Bubble } from 'react-native-gifted-chat';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { formatTimestamp } from './helper';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
+
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 const ChatScreen = () => {
     const [messages, setMessages] = useState([]);
@@ -57,15 +61,15 @@ const ChatScreen = () => {
         <Bubble
             {...props}
             textStyle={{
-                right: { color: 'white' },
+                right: { color: 'black' },
                 left: { color: 'black' },
             }}
             wrapperStyle={{
-                right: { backgroundColor: '#0078FF' },
+                right: { backgroundColor: '#dcf8c6' },
                 left: { backgroundColor: '#ECECEC' },
             }}
             timeTextStyle={{
-                right: { color: 'white' },
+                right: { color: 'black' },
                 left: { color: 'black' },
             }}
         />
@@ -74,12 +78,28 @@ const ChatScreen = () => {
     useEffect(() => {
         // Set navigation options in a separate useEffect hook
         navigation.setOptions({
-            title: userName, // Set header title to userName
+            title: userName,
+            headerStyle: { backgroundColor: '#0e806a' },
+            headerTintColor: 'white',
+            headerRight: () => (
+                <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 10 }}>
+                    <TouchableOpacity >
+                        <MaterialCommunityIcons name="video" size={24} color="#fbfbfb" style={{ marginRight: 10 }} />
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <MaterialCommunityIcons name="phone" size={24} color="#fbfbfb" style={{ marginRight: 10 }} />
+                    </TouchableOpacity>
+                    <TouchableOpacity >
+                        <FontAwesomeIcon icon={faEllipsisV} size={24} color="#fbfbfb" />
+                    </TouchableOpacity>
+                </View>)
+            
+          
         });
     }, [navigation, userName]); // Dependency array with navigation and userName
 
     return (
-        <LinearGradient colors={['#000', '#FFF']} style={{ flex: 1 }}>
+        <LinearGradient colors={['#ece5dd', '#ece5dd']} style={{ flex: 1 }}>
             <GiftedChat
                 messages={messages}
                 onSend={newMessages => onSend(newMessages)}
@@ -88,7 +108,7 @@ const ChatScreen = () => {
                     name: userName,
                 }}
                 renderBubble={renderBubble}
-                placeholder={`Chatting with ${userName}`}
+                placeholder={`Message`}
             />
             {Platform.OS === 'android' && <KeyboardAvoidingView behavior="padding" />}
         </LinearGradient>
