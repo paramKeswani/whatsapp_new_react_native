@@ -3,10 +3,24 @@ import React, { useState, useEffect } from 'react';
 import STATUSDATA from './statusdata';
 import { FontAwesome5 } from 'react-native-vector-icons';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
+import Login from './Login';
+import auth from '@react-native-firebase/auth';
+import { Feather, Fontisto, MaterialCommunityIcons } from 'react-native-vector-icons';
+
 
 const Status = () => {
+
+  const navigation  = useNavigation();
+  const handleLogout = async () => {
+    try {
+      await auth().signOut();
+      navigation.navigate('Login');
+    } catch (error) {
+      console.log('Error logging out:', error);
+    }
+  };
   const [statusData, setStatusData] = useState(STATUSDATA);
-  const navigation = useNavigation();
+  
 
   useEffect(() => {
     setStatusData(STATUSDATA);
@@ -19,14 +33,22 @@ const Status = () => {
 
   return (
     <View style={styles.container}>
-    <View style = {backgroundColor="#0e806a"} >
-    <View style={[styles.headerContainer ] }>
-        <Button title="Home" color="#0e806a" onPress={() => navigation.navigate('Dashboard')} style={[styles.headerTitle]} />
-        <Button title="Status" color="#0e806a" onPress={() => navigation.navigate('Status')} style={styles.headerTitle} />
-        <Button title="Profile" color="#0e806a" onPress={() => navigation.navigate('Dashboard')} style={styles.headerTitle} />
+      <View style={styles.headerContainer}>
+        <Feather name="camera" size={20} color="white" style={styles.icon} />
+        <TouchableOpacity onPress={() => navigation.navigate('Dashboard')} style={[styles.headerTitle, {paddingLeft:30 ,flex:1,flexDirection:"row", justifyContent: 'space-between',}]}>
+          <Text style={styles.headerText}>Chat </Text>
+          <View style={[styles.smallcircle,{backgroundColor:"white"}]}><Text style={[{ color:"#0e806a"}]} >10</Text></View>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Status')} style={[styles.headerTitle ,{paddingLeft :12}]}>
+          <Text style={styles.headerText}>Status</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Profile')} style={[styles.headerTitle ,{paddingLeft :12}] }>
+          <Text style={styles.headerText}>Profile</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={handleLogout} style={[styles.headerTitle ,{paddingLeft :28}  ]}>
+          <Text style={styles.headerText}>Logout</Text>
+        </TouchableOpacity>
       </View>
-    </View>
-    
       
       <View style={[styles.myStatusContainer , padding= 30]}>
         <View>
@@ -50,7 +72,7 @@ const Status = () => {
                     {/* Add your image component here */}
                   </View>
                   <View style={styles.circle} />
-                  <View>
+                  <View style={{paddingLeft:10}}>
                     <Text style={styles.myStatusHeading}>{item.name}</Text>
                     <Text style={styles.myStatusSubtext}>{item.time}</Text>
                   </View>
@@ -94,7 +116,7 @@ const styles = StyleSheet.create({
     height: '10%',
     justifyContent: 'center',
     flexDirection: 'row',
-    width : 400,
+    width :400,
     height:45,
   },headerTitle: {
     
@@ -179,5 +201,89 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     margin: 10,
     color: '#43A047'
-  }
+  },  logoutText: {
+    fontSize: 10,
+    color: '#43A047',
+    margin: 10,
+    fontWeight: 'bold',
+  },
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    position: 'relative',
+  },
+  headerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#0e806a',
+    paddingVertical: 10,
+    
+  },
+  headerTitle: {
+    marginLeft: 10,
+  },
+  headerText: {
+    fontSize: 16,
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  listContainer: {
+    flex: 1,
+    backgroundColor: '#DCDCDC',
+    paddingTop: 5,
+  },
+  userContainer: {
+    marginBottom: 5,
+    borderRadius: 5,
+    overflow: 'hidden',
+    backgroundColor: '#fff',
+  },
+  userGradient: {
+    flex:1,
+    flexDirection :"row",
+    justifyContent: 'space-between',
+
+
+    padding: 15,
+    borderRadius: 30,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  userName: {
+    color: 'black',
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginLeft: 10,
+    paddingRight:100,
+    paddingBottom:20,
+  },
+  chatButton: {
+    position: 'absolute',
+    bottom: 30,
+    right: 20,
+    backgroundColor: '#0e806a',
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  circle: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    backgroundColor: 'grey',
+  },
+  smallcircle: {
+    width: 25,
+    height: 25,
+    borderRadius: 25,
+    backgroundColor: 'lightgreen',
+    justifyContent: 'center', // Align text vertically
+    alignItems: 'center'
+
+  },
+  icon: {
+    marginLeft: 10,
+  },
 });

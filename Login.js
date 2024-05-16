@@ -37,7 +37,7 @@ const Login = () => {
         Alert.alert('Login Successful');
         navigation.navigate('Dashboard');
       } else {
-        Alert.alert('Login Successful');
+        Alert.alert('Sign Up');
         navigation.navigate('Detail', { uid: user.uid });
       }
     } catch (error) {

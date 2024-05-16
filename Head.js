@@ -6,9 +6,10 @@ const Head = () => {
   return (
     <View style = {styles.container}>
       <View style = {styles.headerContainer}>
-        <Text styles = {styles.headerText}>Whatsapp</Text>
+      <Text style={{ fontWeight: 'bold', fontSize: 20 ,color:"white" }}>WhatsApp</Text>
+
         <View style = {styles.iconContainer}>
-            <Feather name = 'camera' size = {20} color = 'white' style = {styles.icon} />
+    
             <Fontisto name = 'search' size = {20} color = 'white' style = {styles.icon} />
             <MaterialCommunityIcons name = 'dots-vertical' size = {21} color = 'white' style = {styles.icon}/>
         </View>
@@ -32,9 +33,10 @@ const styles = StyleSheet.create({
     marginHorizontal: 16
   },
   headerText: {
-    fontSize: 20,
+    fontSize: 50,
     color: 'white',
-    fontWeight: '500'
+    fontWeight: 'bold',
+
   },
   iconContainer: {
     flexDirection: 'row',

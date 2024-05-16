@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, FlatList, StyleSheet, Button } from 'react-native';
+import { View, Text, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
-import { MaterialCommunityIcons } from 'react-native-vector-icons';
+import { Feather, MaterialCommunityIcons } from 'react-native-vector-icons';
 
 export default function Dashboard({ route }) {
   const [users, setUsers] = useState([]);
@@ -65,28 +65,44 @@ export default function Dashboard({ route }) {
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
-        <Button title="Home"  color="#0e806a" onPress={ () =>navigation.navigate('Dashboard')} style={[styles.headerTitle,{ width: 400 }]} />
-        <Button title="Status"  color="#0e806a" onPress={ () =>navigation.navigate('Status')} style={styles.headerTitle} />
-        <Button title="Profile"  color="#0e806a"  onPress={ () =>navigation.navigate('Dashboard')} style={styles.headerTitle} />
-        <View style={styles.headerContent}>
-        
-          <TouchableOpacity onPress={handleLogout}>
-            <Text style={styles.logoutText}>LOGOUT</Text>
-          </TouchableOpacity>
-        </View>
+        <Feather name="camera" size={20} color="white" style={styles.icon} />
+        <TouchableOpacity onPress={() => navigation.navigate('Dashboard')} style={[styles.headerTitle, {paddingLeft:30 ,flex:1,flexDirection:"row", justifyContent: 'space-between',}]}>
+          <Text style={styles.headerText}>Chat </Text>
+          <View style={[styles.smallcircle,{backgroundColor:"white"}]}><Text style={[{ color:"#0e806a"}]} >10</Text></View>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Status')} style={[styles.headerTitle ,{paddingLeft :12}]}>
+          <Text style={styles.headerText}>Status</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Profile')} style={[styles.headerTitle ,{paddingLeft :12}] }>
+          <Text style={styles.headerText}>Profile</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={handleLogout} style={[styles.headerTitle ,{paddingLeft :28}  ]}>
+          <Text style={styles.headerText}>Logout</Text>
+        </TouchableOpacity>
       </View>
       <View style={styles.listContainer}>
         <FlatList
           data={users}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
-            <TouchableOpacity
-              onPress={() => navigateToChat(item.id, item.name, item.email)}
-              style={styles.userContainer}
-            >
+            <TouchableOpacity onPress={() => navigateToChat(item.id, item.name, item.email)} style={[styles.userContainer,{height:90}]}>
               <LinearGradient colors={['rgba(128,128,128,0)', 'rgba(128,128,128,0)']} style={styles.userGradient}>
                 <View style={styles.circle} />
+                <View style={{paddingBottom:10}}>
                 <Text style={styles.userName}>{item.name}</Text>
+                <Text> Hello Programmer How are You ?</Text>
+
+                </View>
+                
+                <View style={{paddingBottom:10}}>
+                 <Text style={{marginRight:10}}>12.15</Text>
+                 <View style={styles.smallcircle}>
+
+                 <Text style={[{ color:"white"}]} >2</Text>
+                 </View>
+                 </View>
+                
+
               </LinearGradient>
             </TouchableOpacity>
           )}
@@ -106,51 +122,24 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   headerContainer: {
-    flex: 1,
-    backgroundColor: '#0e806a',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    height: '10%',
-    justifyContent: 'center',
     flexDirection: 'row',
-    width : 400,
-    height:45,
+    alignItems: 'center',
+    backgroundColor: '#0e806a',
+    paddingVertical: 10,
+    
   },
   headerTitle: {
-    
-    fontSize: 20,
-    fontWeight: 'bold',
-    margin: 10,
-    color: '#43A047'
-
+    marginLeft: 10,
   },
-  headerContent: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  welcomeText: {
-    fontSize: 24,
-    color: '#fff',
-    margin: 10,
-  },
-  logoutText: {
-    fontSize: 10,
-    color: '#43A047',
-    margin: 10,
+  headerText: {
+    fontSize: 16,
+    color: 'white',
     fontWeight: 'bold',
   },
   listContainer: {
     flex: 1,
     backgroundColor: '#DCDCDC',
-    padding: 5,
-    position: 'absolute',
-    top: '7%',
-    left: 0,
-    right: 0,
-    bottom: 0,
+    paddingTop: 5,
   },
   userContainer: {
     marginBottom: 5,
@@ -159,6 +148,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   userGradient: {
+    flex:1,
+    flexDirection :"row",
+    justifyContent: 'space-between',
+
+
     padding: 15,
     borderRadius: 30,
     flexDirection: 'row',
@@ -169,6 +163,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     marginLeft: 10,
+    paddingRight:100,
+    paddingBottom:20,
   },
   chatButton: {
     position: 'absolute',
@@ -185,14 +181,18 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     borderRadius: 25,
-    backgroundColor: "grey",
+    backgroundColor: 'grey',
   },
-  whiteLine: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: 1,
-    backgroundColor: 'white',
+  smallcircle: {
+    width: 25,
+    height: 25,
+    borderRadius: 25,
+    backgroundColor: 'lightgreen',
+    justifyContent: 'center', // Align text vertically
+    alignItems: 'center'
+
+  },
+  icon: {
+    marginLeft: 10,
   },
 });
